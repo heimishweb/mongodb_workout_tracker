@@ -16,9 +16,17 @@ module.exports = function (router) {
 
     //router.put
     router.put("/api/workouts/:id", ({ body }, res) => {
-        workout.create(body)
+        bodyReFormat = 
+        {
+            day: new Date().setDate(new Date().getDate()),
+            workouts: [
+                body
+            ]
+        }
+        workout.create(bodyReFormat)
             .then(dbworkout => {
                 res.json(dbworkout);
+                console.log(bodyReFormat)
             })
             .catch(err => {
                 res.json(err);
