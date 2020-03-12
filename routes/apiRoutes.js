@@ -2,7 +2,7 @@ var workout = require('../models/workoutModel')
 
 var router = require("express").Router()
 
-module.exports = function (app) {
+module.exports = function (router) {
     //router.get
     router.get("/api/workouts", (req, res) => {
         workout.find({}, (error, data) => {
@@ -16,7 +16,7 @@ module.exports = function (app) {
 
     //router.put
     router.put("/api/workouts", ({ body }, res) => {
-        workout.create(body)
+        workout.update(body)
             .then(dbworkout => {
                 res.json(dbworkout);
             })
@@ -27,6 +27,15 @@ module.exports = function (app) {
 
 
     //router.post
+    router.post("/api/workouts", ({ body }, res) => {
+        workout.create(body)
+            .then(dbworkout => {
+                res.json(dbworkout);
+            })
+            .catch(err => {
+                res.json(err);
+            });
+    });
 
     //router.delete
 
