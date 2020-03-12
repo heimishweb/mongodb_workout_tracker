@@ -18,3 +18,30 @@ require("./routes/htmlRoutes.js")(app)
 app.listen(PORT, function () {
     console.log("app listening on port: " + PORT)
 })
+
+//mongoose connection
+
+const mongoose = require("mongoose");
+
+const Exercise = require("./models/exerciseModel.js");
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/dbExercise", { useNewUrlParser: true });
+
+const data2 = {
+    type: "resistance",
+    name: "tricep pulldown",
+    weight: 10,
+    sets: 20,
+    reps: 30,
+    duration: 40
+
+};
+
+//in collection exercise add document data2 for dbExercise database
+Exercise.create(data2)
+    .then(dbExercise => {
+        console.log(dbExercise);
+    })
+    .catch(({ message }) => {
+        console.log(message);
+    });
