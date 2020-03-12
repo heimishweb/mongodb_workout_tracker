@@ -13,7 +13,7 @@ app.use("/public", express.static(__dirname + '/public'));
 
 app.use(express.json());
 require("./routes/htmlRoutes.js")(app)
-// require("./routes/apiRoutes.js")(app)
+require("./routes/apiRoutes.js")(app)
 
 app.listen(PORT, function () {
     console.log("app listening on port: " + PORT)
@@ -23,25 +23,146 @@ app.listen(PORT, function () {
 
 const mongoose = require("mongoose");
 
-const Exercise = require("./models/exerciseModel.js");
+const workout = require("./models/workoutModel.js");
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/dbExercise", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/dbworkout", { useNewUrlParser: true });
 
-const data2 = {
-    type: "resistance",
-    name: "tricep pulldown",
-    weight: 10,
-    sets: 20,
-    reps: 30,
-    duration: 40
+let workoutSeed = [
+    {
+      day: new Date().setDate(new Date().getDate() - 10),
+      workouts: [
+        {
+          type: "resistance",
+          name: "Bicep Curl",
+          duration: 20,
+          weight: 100,
+          reps: 10,
+          sets: 4
+        }
+      ]
+    },
+    {
+      day: new Date().setDate(new Date().getDate() - 9),
+      workouts: [
+        {
+          type: "resistance",
+          name: "Lateral Pull",
+          duration: 20,
+          weight: 300,
+          reps: 10,
+          sets: 4
+        }
+      ]
+    },
+    {
+      day: new Date().setDate(new Date().getDate() - 8),
+      workouts: [
+        {
+          type: "resistance",
+          name: "Push Press",
+          duration: 25,
+          weight: 185,
+          reps: 8,
+          sets: 4
+        }
+      ]
+    },
+    {
+      day: new Date().setDate(new Date().getDate() - 7),
+      workouts: [
+        {
+          type: "cardio",
+          name: "Running",
+          duration: 25,
+          distance: 4
+        }
+      ]
+    },
+    {
+      day: new Date().setDate(new Date().getDate() - 6),
+      workouts: [
+        {
+          type: "resistance",
+          name: "Bench Press",
+          duration: 20,
+          weight: 285,
+          reps: 10,
+          sets: 4
+        }
+      ]
+    },
+    {
+      day: new Date().setDate(new Date().getDate() - 5),
+      workouts: [
+        {
+          type: "resistance",
+          name: "Bench Press",
+          duration: 20,
+          weight: 300,
+          reps: 10,
+          sets: 4
+        }
+      ]
+    },
+    {
+      day: new Date().setDate(new Date().getDate() - 4),
+      workouts: [
+        {
+          type: "resistance",
+          name: "Quad Press",
+          duration: 30,
+          weight: 300,
+          reps: 10,
+          sets: 4
+        }
+      ]
+    },
+    {
+      day: new Date().setDate(new Date().getDate() - 3),
+      workouts: [
+        {
+          type: "resistance",
+          name: "Bench Press",
+          duration: 20,
+          weight: 300,
+          reps: 10,
+          sets: 4
+        }
+      ]
+    },
+    {
+      day: new Date().setDate(new Date().getDate() - 2),
+      workouts: [
+        {
+          type: "resistance",
+          name: "Military Press",
+          duration: 20,
+          weight: 300,
+          reps: 10,
+          sets: 4
+        }
+      ]
+    },
+    {
+      day: new Date().setDate(new Date().getDate() - 1),
+      workouts: [
+        {
+          type: "resistance",
+          name: "Bench",
+          duration: 30,
+          distance: 2
+        }
+      ]
+    }
+  ];
 
-};
-
-//in collection exercise add document data2 for dbExercise database
-Exercise.create(data2)
-    .then(dbExercise => {
-        console.log(dbExercise);
+//in collection workout add document data2 for dbworkout database
+for (i=0;i<workoutSeed.length;i++) {
+workout.create(workoutSeed[i])
+    .then(dbworkout => {
+        console.log(dbworkout);
     })
     .catch(({ message }) => {
         console.log(message);
     });
+  }
