@@ -15,8 +15,8 @@ module.exports = function (router) {
     });
 
     //router.put
-    router.put("/api/workouts", ({ body }, res) => {
-        workout.update(body)
+    router.put("/api/workouts/:id", ({ body }, res) => {
+        workout.create(body)
             .then(dbworkout => {
                 res.json(dbworkout);
             })
