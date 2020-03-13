@@ -2,13 +2,12 @@
 
 fetch("/api/workouts/range")
   .then(response => {
+    // console.log("stats!!!!!!! not crazy" + response.json())
     return response.json();
-    console.log("!!!!!!" + response)
   })
   .then(data => {
     populateChart(data);
   });
-
 
 API.getWorkoutsInRange()
 

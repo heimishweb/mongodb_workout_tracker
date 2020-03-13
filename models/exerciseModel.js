@@ -36,6 +36,6 @@ const exerciseSchema = new Schema({
 
 });
 
-const exercise = mongoose.model("exercise", exerciseSchema); //workout is the collection name
+const exerciseModel = mongoose.model("exerciseModel", exerciseSchema); //exerciseModel is the collection name
 
-module.exports = exercise;
+module.exports = exerciseModel;

@@ -1,4 +1,4 @@
-var exercise = require('../models/exerciseModel')
+var exerciseModel = require('../models/exerciseModel')
 var cardio = require('../models/cardioModel')
 
 var router = require("express").Router()
@@ -6,7 +6,7 @@ var router = require("express").Router()
 module.exports = function (router) {
     //router.get
     router.get("/api/workouts", (req, res) => {
-        workout.find({}, (error, data) => {
+        exerciseModel.find({}, (error, data) => {
             if (error) {
                 res.send(error);
             } else {
@@ -24,7 +24,7 @@ module.exports = function (router) {
                 body
             ]
         }
-        workout.create(bodyReFormat)
+        exerciseModel.create(bodyReFormat)
             .then(dbworkout => {
                 res.json(dbworkout);
                 console.log(bodyReFormat)
@@ -58,10 +58,10 @@ module.exports = function (router) {
     //router.range for stats.
     router.get("/api/workouts/range", ({ body }, res) => {
 
-        exercise.find()
+        exerciseModel.find()
             .then(exerciseData => {
+                console.log("exerciseData!!!" + exerciseData)
                 res.json(exerciseData);
-                console.log("exerciseData!!!"+exerciseData)
             })
             .catch(err => {
                 res.json(err);
