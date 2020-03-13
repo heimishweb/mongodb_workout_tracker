@@ -17,7 +17,7 @@ module.exports = function (router) {
 
     //router.put for resistance [works]
     router.put("/api/workouts/:id", ({ body }, res) => {
-        bodyReFormat = 
+        bodyReFormat =
         {
             day: new Date().setDate(new Date().getDate()),
             workouts: [
@@ -37,7 +37,7 @@ module.exports = function (router) {
 
     //router.post for cardio
     router.post("/api/workouts", ({ body }, res) => {
-        bodyReFormat = 
+        bodyReFormat =
         {
             day: new Date().setDate(new Date().getDate()),
             workouts: [
@@ -56,20 +56,24 @@ module.exports = function (router) {
     //router.delete
 
     //router.range for stats.
-    router.get("/api/workouts/range", ({body}, res) => {
-        exercise.find({}, (error, data) => {
-            if (error) {
-                res.send(error);
-            } else {
-                res.json(data);
-            }
-            console.log(data);
-        });
+    router.get("/api/workouts/range", ({ body }, res) => {
+
+        exercise.find()
+            .then(exerciseData => {
+                res.json(exerciseData);
+                console.log("exerciseData!!!"+exerciseData)
+            })
+            .catch(err => {
+                res.json(err);
+            });
+
+        // console.log("#################################################")
+        // console.log(data);
     });
 
 
-}
 
+}
 
 
 
