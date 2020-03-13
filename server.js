@@ -23,9 +23,9 @@ app.listen(PORT, function () {
 
 const mongoose = require("mongoose");
 
-const workout = require("./models/workoutModel.js");
+const exercise = require("./models/exerciseModel.js");
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/dbworkout", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
 let workoutSeed = [
     {
@@ -158,9 +158,9 @@ let workoutSeed = [
 
 //in collection workout add document data2 for dbworkout database
 for (i=0;i<workoutSeed.length;i++) {
-workout.create(workoutSeed[i])
-    .then(dbworkout => {
-        console.log(dbworkout);
+exercise.create(workoutSeed[i])
+    .then(workout => {
+        console.log(workout);
     })
     .catch(({ message }) => {
         console.log(message);

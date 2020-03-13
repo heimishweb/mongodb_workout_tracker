@@ -1,4 +1,5 @@
-var workout = require('../models/workoutModel')
+var exercise = require('../models/exerciseModel')
+var cardio = require('../models/cardioModel')
 
 var router = require("express").Router()
 
@@ -14,7 +15,7 @@ module.exports = function (router) {
         });
     });
 
-    //router.put
+    //router.put for resistance [works]
     router.put("/api/workouts/:id", ({ body }, res) => {
         bodyReFormat = 
         {
@@ -34,9 +35,16 @@ module.exports = function (router) {
     });
 
 
-    //router.post
+    //router.post for cardio
     router.post("/api/workouts", ({ body }, res) => {
-        workout.create(body)
+        bodyReFormat = 
+        {
+            day: new Date().setDate(new Date().getDate()),
+            workouts: [
+                body
+            ]
+        }
+        cardio.create(body)
             .then(dbworkout => {
                 res.json(dbworkout);
             })
@@ -47,7 +55,17 @@ module.exports = function (router) {
 
     //router.delete
 
-    //router.range *bonus*
+    //router.range for stats.
+    router.get("/api/workouts/range", ({body}, res) => {
+        exercise.find({}, (error, data) => {
+            if (error) {
+                res.send(error);
+            } else {
+                res.json(data);
+            }
+            console.log(data);
+        });
+    });
 
 
 }
