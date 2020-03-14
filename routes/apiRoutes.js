@@ -58,14 +58,24 @@ module.exports = function (router) {
     //router.range for stats.
     router.get("/api/workouts/range", ({ body }, res) => {
 
-        exerciseModel.find()
+        exerciseModel.find({})
             .then(exerciseData => {
-                console.log("exerciseData!!!" + exerciseData)
+                // console.log("exerciseData!!!" + exerciseData)
                 res.json(exerciseData);
             })
             .catch(err => {
                 res.json(err);
             });
+
+
+        // exerciseModel.find({}, (error, data) => {
+        //     if (error) {
+        //         res.send(error);
+        //     } else {
+        //         res.json(exerciseData);
+        //     }
+        // });
+
 
         // console.log("#################################################")
         // console.log(data);

@@ -2,7 +2,6 @@
 
 fetch("/api/workouts/range")
   .then(response => {
-    // console.log("stats!!!!!!! not crazy" + response.json())
     return response.json();
   })
   .then(data => {
