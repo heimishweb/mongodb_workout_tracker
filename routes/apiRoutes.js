@@ -20,7 +20,7 @@ module.exports = function (router) {
         bodyReFormat =
         {
             day: new Date().setDate(new Date().getDate()),
-            workouts: [
+            exercises: [
                 body
             ]
         }
@@ -40,7 +40,7 @@ module.exports = function (router) {
         bodyReFormat =
         {
             day: new Date().setDate(new Date().getDate()),
-            workouts: [
+            exercises: [
                 body
             ]
         }
