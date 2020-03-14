@@ -1,5 +1,4 @@
 var exerciseModel = require('../models/exerciseModel')
-var cardio = require('../models/cardioModel')
 
 var router = require("express").Router()
 
@@ -55,7 +54,7 @@ module.exports = function (router) {
 
     //router.delete
 
-    //router.range for stats.
+    //router.range for /stats.
     router.get("/api/workouts/range", ({ body }, res) => {
 
         exerciseModel.find({})
